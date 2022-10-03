@@ -1,0 +1,41 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+      <img class="brand-logo" src="assets/logo-positronx-white.svg" alt="positronX.io Logo">
+    </a>
+    <a class="nav-link active boot">
+      <i class="fas fa-user"></i>Perfil do Usuário
+    </a>
+    <br>
+    <a class="nav-link boot" (click)="authService.SignOut()">
+      <i class="fas fa-sign-out-alt"></i>Sair
+    </a>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Perfil do Usuário</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="authService.userData as user">
+            <div class="col-md-12">
+              <div class="media">
+                <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="assets/dummy-user.png"
+                  alt="{{user.displayName}}">
+                <div class="media-body">
+                  <h1>Olá: <strong class="user">{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                  <p>ID do Usuário: <strong class="user">{{user.uid}}</strong></p>
+                  <p>Email: <strong class="user">{{user.email}}</strong></p>
+                  <p *ngIf="user.emailVerified==true">Email Verificado: <strong class="statusT">Verificado</strong></p>
+                  <p *ngIf="user.emailVerified==false">Email Verificado: <strong class="statusF">Não Verificado</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>

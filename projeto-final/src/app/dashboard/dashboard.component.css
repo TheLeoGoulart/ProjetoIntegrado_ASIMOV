@@ -1,0 +1,17 @@
+.statusT {
+	color:green;
+}
+
+.statusF {
+	color:red;
+}
+
+.user {
+	color:teal;
+}
+
+.boot {
+	color:chocolate;
+	padding:inherit;
+	border: thick;
+}
