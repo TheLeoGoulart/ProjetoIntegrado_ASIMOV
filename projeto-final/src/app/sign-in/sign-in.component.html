@@ -1,7 +1,9 @@
+<div class="all">
+  <br>
 <div class="displayTable">
     <div class="displayTableCell">
       <div class="authBlock">
-        <h3>Entrar</h3>
+        <h3 style="color:orange;">Entrar</h3>
         <div class="formGroup">
           <input type="text" class="formControl" placeholder="Email" #userEmail required>
         </div>
@@ -13,7 +15,7 @@
           <input type="button" class="btn btnPrimary" value="Entrar" (click)="authService.SignIn(userEmail.value, userPassword.value)">
         </div>
         <div class="formGroup">
-          <span class="or"><span class="orInner">Ou</span></span>
+          <span class="or"><span class="orInner" style="color:black;">Ou</span></span>
         </div>
         <!-- Calling GoogleAuth Api from AuthService -->
         <div class="formGroup">
@@ -23,7 +25,7 @@
           </button>
         </div>
         <div class="forgotPassword">
-          <span routerLink="/forgot-password">Esqueceu sua senha?</span>
+          <span routerLink="/forgot-password" style="color: orange;">Esqueceu sua senha?</span>
         </div>
       </div>
       <div class="redirectToLogin">
@@ -31,3 +33,4 @@
       </div>
     </div>
   </div>
+</div>

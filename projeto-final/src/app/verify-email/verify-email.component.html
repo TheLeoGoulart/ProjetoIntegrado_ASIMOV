@@ -1,7 +1,9 @@
+<div class="all">
+  <br>
 <div class="displayTable">
     <div class="displayTableCell">
       <div class="authBlock">
-        <h3>Obrigado por se registrar</h3>
+        <h3 style="color:orange;">Obrigado por se registrar</h3>
         <div class="formGroup" *ngIf="authService.userData as user">
           <p class="text-center">Nós enviamos um email de confirmação para <strong>{{user.email}}</strong>.</p>
           <p class="text-center">Por favor verifique seu email e clique no link para validar seu email</p>
@@ -20,3 +22,4 @@
       </div>
     </div>
   </div>
+</div>

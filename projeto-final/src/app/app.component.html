@@ -1,4 +1,5 @@
-<nav class="navbar navbar-inverse">
+<nav *ngIf="authService.isLoggedIn"
+  class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- suporte a mobile -->
     <div class="navbar-header">
