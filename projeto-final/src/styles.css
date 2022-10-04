@@ -685,7 +685,7 @@ body .table thead th {
 }
 
 .redirect{
-  color:orange;
+  color:orange !important;
 }
 
 .authBlock{

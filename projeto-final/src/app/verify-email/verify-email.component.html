@@ -1,6 +1,6 @@
 <div class="all">
   <br>
-<div class="displayTable">
+  <div class="displayTable">
     <div class="displayTableCell">
       <div class="authBlock">
         <h3 style="color:orange;">Obrigado por se registrar</h3>
@@ -8,7 +8,7 @@
           <p class="text-center">Nós enviamos um email de confirmação para <strong>{{user.email}}</strong>.</p>
           <p class="text-center">Por favor verifique seu email e clique no link para validar seu email</p>
         </div>
-        
+
         <!-- Calling SendVerificationMail() method using authService Api -->
         <div class="formGroup">
           <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
@@ -16,9 +16,9 @@
             Re-enviando verificação de E-mail
           </button>
         </div>
-      </div>
-      <div class="redirectToLogin">
-        <span>Voltar para ?<span class="redirect" routerLink="/sign-in"> Entrar</span></span>
+        <div class="redirectToLogin">
+          <span>Voltar para ?<span class="redirect" routerLink="/sign-in"> Entrar</span></span>
+        </div>
       </div>
     </div>
   </div>
