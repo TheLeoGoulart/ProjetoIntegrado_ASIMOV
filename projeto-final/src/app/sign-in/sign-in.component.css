@@ -1,0 +1,34 @@
+:root {
+    --cinzaEscuro:#505050;
+}
+
+.btn{
+    background-color:orange;
+}
+
+.all{
+    background-color:white;
+    height: 100%;
+    width: 100%;
+}
+
+.displayTable{
+    background-color:white;
+}
+
+.redirect{
+    color:orange;
+}
+
+.authBlock{
+    display: block;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.authBlock,  
+.formGroup .or .orInner,
+.formGroup .or {
+    background-color: #505050;
+    color: orange;
+}
