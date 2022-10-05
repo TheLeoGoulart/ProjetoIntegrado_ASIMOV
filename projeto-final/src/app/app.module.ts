@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard';
-import { TarefasModule } from './tarefas';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -21,6 +20,10 @@ import { ForgotPasswordComponent } from './forgot-password';
 import { VerifyEmailComponent } from './verify-email';
 
 import { AuthService } from "./shared/services/auth.service"
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
+import { EditUsuarioComponent } from './edit-usuario/edit-usuario.component';
+import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 @NgModule({
   declarations: [
@@ -28,20 +31,23 @@ import { AuthService } from "./shared/services/auth.service"
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    AddUsuarioComponent,
+    EditUsuarioComponent,
+    UsuarioListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     DashboardModule,
-    TarefasModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

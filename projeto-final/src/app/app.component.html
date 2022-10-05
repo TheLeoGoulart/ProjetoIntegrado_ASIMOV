@@ -1,38 +1,44 @@
+<!-- Top navigation -->
 <nav *ngIf="authService.isLoggedIn"
-  class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <!-- suporte a mobile -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Visualizar itens</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" [routerLink]="['/dashboard']">Projeto final</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projetos <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li>
-              <a routerLink="/dashboard">
-                Dashboard
-              </a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-              <a routerLink="/tarefas">
-                Gerenciador de tarefas
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
+      class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard">
+    <span class="dasboard-text">Dashboard</span>
+  </a>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" routerLink="/dashboard">
+        <span class="user-image" style="background-image: url('assets/user.jpg')"></span>
+        Olá Admin
+      </a>
+    </li>
+  </ul>
 </nav>
+
+<!-- Sidebar navigation -->
 <div class="container-fluid">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <nav *ngIf="authService.isLoggedIn" class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/registrar-usuario" routerLinkActive="active">
+              Adicionar Usuário
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ver-usuario" routerLinkActive="active">
+              Lista de Usuário
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
 </div>

@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardRoutes, DashboardComponent } from './dashboard';
-import { ListarTarefaComponent, TarefaRoutes } from './tarefas';
+import { DashboardComponent } from './dashboard';
+import { AddUsuarioComponent } from './add-usuario';
+import { UsuarioListComponent } from './usuario-list';
+import { EditUsuarioComponent } from './edit-usuario';
 import { SignInComponent } from './sign-in';
 import { SignUpComponent } from './sign-up';
 import { ForgotPasswordComponent } from './forgot-password';
@@ -18,11 +21,13 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'tarefas', component: ListarTarefaComponent, canActivate: [AuthGuard] },
+  { path: 'registrar-usuario', component: AddUsuarioComponent,  canActivate: [AuthGuard] },
+  { path: 'ver-usuario', component: UsuarioListComponent, canActivate: [AuthGuard]  },
+  { path: 'editar-usuario/:id', component: EditUsuarioComponent, canActivate: [AuthGuard]  }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
+  imports: [ CommonModule,RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }) ],
   exports: [ RouterModule ]
 })
 export class AppRoutingModule {}
