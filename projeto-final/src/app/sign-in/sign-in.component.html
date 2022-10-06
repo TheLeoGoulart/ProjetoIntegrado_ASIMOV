@@ -1,4 +1,4 @@
-<div class="all">
+<div class="all" *ngIf="!authService.isLoggedIn">
   <br>
 <div class="displayTable">
     <div class="displayTableCell">
@@ -28,7 +28,7 @@
           <span routerLink="/forgot-password" style="color: orange;">Esqueceu sua senha?</span>
         </div>
         <div class="redirectToLogin">
-          <span>Ainda não possui conta?<span class="redirect" routerLink="/dashboard"> Cadastrar</span></span>
+          <span>Ainda não possui conta?<span class="redirect" routerLink="/sign-up"> Cadastrar</span></span>
         </div>
       </div>
     </div>

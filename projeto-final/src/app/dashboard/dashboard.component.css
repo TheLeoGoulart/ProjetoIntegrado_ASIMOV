@@ -15,3 +15,13 @@
 	padding:inherit;
 	border: thick;
 }
+
+.img-thumbnail{
+	height: 150px !important;
+	width: 500px !important;
+}
+
+.navbar-dark{
+	background-color: aliceblue !important;
+}
+

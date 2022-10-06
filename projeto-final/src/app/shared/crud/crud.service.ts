@@ -30,8 +30,8 @@ export class CrudService {
   }
 
   // Buscar objeto único de Usuario
-  GetUsuario(id: string) {
-    this.usuarioRef = this.db.object('usuarios-list/' + id);
+  GetUsuario(key: string) {
+    this.usuarioRef = this.db.object('usuarios-list/' + key);
     return this.usuarioRef;
   }
 
@@ -60,8 +60,8 @@ export class CrudService {
   }
 
   // Deletar objeto Usuario
-  DeleteUsuario(id: string) {
-    this.usuarioRef = this.db.object('usuarios-list/' + id);
+  DeleteUsuario(key: string) {
+    this.usuarioRef = this.db.object('usuarios-list/' + key);
     this.usuarioRef.remove();
   }
 }

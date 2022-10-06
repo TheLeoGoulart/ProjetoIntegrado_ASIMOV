@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CrudService } from '../shared';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -6,10 +11,94 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-usuario.component.css']
 })
 export class EditUsuarioComponent implements OnInit {
+  editForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private crudApi: CrudService,
+    private fb: FormBuilder,
+    private location: Location,
+    private actRoute: ActivatedRoute,
+    private router: Router,
+    //private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.atualizarUsuarioData();
+    const id = this.actRoute.snapshot.paramMap.get('id');
+    this.crudApi
+      .GetUsuario(id)
+      .valueChanges()
+      .subscribe((data) => {
+        this.editForm.setValue(data);
+      });
   }
 
+  get nome() {
+    return this.editForm.get('nome');
+  }
+  get sobrenome() {
+    return this.editForm.get('sobrenome');
+  }
+  get email() {
+    return this.editForm.get('email');
+  }
+  get senha() {
+    return this.editForm.get('senha');
+  }
+  get cpf() {
+    return this.editForm.get('cpf');
+  }
+  get telefone() {
+    return this.editForm.get('telefone');
+  }
+  get endereco() {
+    return this.editForm.get('endereco');
+  }
+  get numero() {
+    return this.editForm.get('numero');
+  }
+  get complemento() {
+    return this.editForm.get('complemento');
+  }
+  get cep() {
+    return this.editForm.get('cep');
+  }
+  get estado() {
+    return this.editForm.get('estado');
+  }
+
+  atualizarUsuarioData() {
+    this.editForm = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(2)]],
+      sobrenome: [''],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        ],
+      ],
+      senha: [''],
+      cpf: [''],
+      telefone: [''],
+      admin: false,
+      endereco: [''],
+      numero: [''],
+      complemento: [''],
+      cep: [''],
+      estado: [''],
+    });
+  }
+
+  voltar() {
+    this.location.back();
+  }
+
+  atualizarForm() {
+    this.crudApi.UpdateUsuario(this.editForm.value);
+    //this.toastr.success(
+      //this.editForm.controls['firstName'].value + ' updated successfully'
+    //);
+    this.router.navigate(['ver-usuario']);
+  }
 }

@@ -1,1 +1,57 @@
-<p>usuario-list works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Lista de Usuários</h2>
+    <a *ngIf="esconderUsuarioNulo"
+        routerLink="/registrar-usuario" class="btn btn-success">
+        Adicionar Usuário
+    </a>
+</div>
+<div class="pricing-header mx-auto">
+    <div class="no-data text-center" *ngIf="preLoader">
+        <img src="assets/preloader.gif" class="preloader-icon" alt="Sem Usuário" />
+    </div>
+    <div class="no-data text-center" *ngIf="noData">
+        <img src="assets/no-user.png" class="nodata-msg" alt="Sem Usuário" />
+        <p class="nodata-msg">Nenhum usuário foi adicionado ainda!</p>
+        <a routerLink="/registrar-usuario" class="btn btn-success"> Adicionar Usuário </a>
+    </div>
+    <div class="table-responsive" *ngIf="esconderUsuarioNulo">
+        <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Nome:</th>
+                    <th scope="col">Email:</th>
+                    <th scope="col">CPF:</th>
+                    <th scope="col">Telefone:</th>
+                    <th scope="col">Endereco:</th>
+                    <th scope="col">CEP:</th>
+                    <th scope="col">Estado:</th>
+                    <th class="text-center" scope="col">Editar</th>
+                    <th class="text-center" scope="col">Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="
+            let usuario of usuarios
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          ">
+                    <th scope="row">{{ usuario.nome }} {{ usuario.sobrenome }}</th>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.cpf }}</td>
+                    <td>{{ usuario.telefone }}</td>
+                    <td>{{ usuario.endereco }}, {{ usuario.numero }}, {{ usuario.complemento }}</td>
+                    <td>{{ usuario.cep }}</td>
+                    <td>{{ usuario.estado}}</td>
+                    <td class="text-center action-block">
+                        <span class="mr-2 btn btn-outline-primary btn-sm"
+                            routerLink="/editar-usuario/{{ usuario.$key }}">Editar</span>
+                    </td>
+                    <td class="text-center action-block">
+                        <span class="btn btn-outline-danger btn-sm" (click)="deleteUsuario(usuario)">Deletar</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
