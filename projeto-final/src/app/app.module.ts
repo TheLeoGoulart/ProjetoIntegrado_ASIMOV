@@ -27,6 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddUsuarioComponent } from './add-usuario/add-usuario.component';
 import { EditUsuarioComponent } from './edit-usuario/edit-usuario.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
+import { AddSkateComponent } from './add-skate/add-skate.component';
+import { EditSkateComponent } from './edit-skate/edit-skate.component';
+import { SkateListComponent } from './skate-list/skate-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
     VerifyEmailComponent,
     AddUsuarioComponent,
     EditUsuarioComponent,
-    UsuarioListComponent
+    UsuarioListComponent,
+    AddSkateComponent,
+    EditSkateComponent,
+    SkateListComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard';
 import { AddUsuarioComponent } from './add-usuario';
 import { UsuarioListComponent } from './usuario-list';
+import { EditSkateComponent } from './edit-skate';
+import { AddSkateComponent } from './add-skate';
+import { SkateListComponent } from './skate-list';
 import { EditUsuarioComponent } from './edit-usuario';
 import { SignInComponent } from './sign-in';
 import { SignUpComponent } from './sign-up';
@@ -23,7 +26,10 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'registrar-usuario', component: AddUsuarioComponent,  canActivate: [AuthGuard] },
   { path: 'ver-usuario', component: UsuarioListComponent, canActivate: [AuthGuard]  },
-  { path: 'editar-usuario/:id', component: EditUsuarioComponent, canActivate: [AuthGuard]  }
+  { path: 'editar-usuario/:id', component: EditUsuarioComponent, canActivate: [AuthGuard]  },
+  { path: 'registrar-skate', component: AddSkateComponent,  canActivate: [AuthGuard] },
+  { path: 'ver-skate', component: SkateListComponent, canActivate: [AuthGuard]  },
+  { path: 'editar-skate/:id', component: EditSkateComponent, canActivate: [AuthGuard]  }
 ];
 
 @NgModule({

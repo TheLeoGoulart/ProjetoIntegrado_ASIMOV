@@ -1,0 +1,67 @@
+<div class="pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Adicionar Skate</h2>
+</div>
+<form [formGroup]="skateForm" (ngSubmit)="submitSkateData()" novalidate>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label>Nome</label>
+                    <input type="text" formControlName="nome" class="form-control" required />
+                    <!-- errors-->
+                    <p *ngIf="nome.touched && nome.invalid" class="error">
+                        <sup>*</sup>Por favor informe o nome do Skate
+                    </p>
+                    <p *ngIf="nome.errors?.['minlength']" class="error">
+                        <sup>*</sup>O nome deve ter mais que 2 letras
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label>Tamanho</label>
+                    <input type="text" formControlName="tamanho" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Design</label>
+                    <input type="text" formControlName="design" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Lixa</label>
+                    <input type="text" formControlName="lixa" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Material</label>
+                    <input type="text" formControlName="material" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Modelo</label>
+                    <input type="text" formControlName="modelo" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Marca</label>
+                    <input type="text" formControlName="marca" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Linha</label>
+                    <input type="text" formControlName="linha" class="form-control" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Resina</label>
+                    <input type="text" formControlName="resina" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-right">
+            <button type="button" class="btn btn-secondary gap-right" (click)="ResetForm()">
+                Resetar
+            </button>
+            <button type="submit" class="btn btn-success" [disabled]="!skateForm.valid">
+                Adicionar Skate
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Lista de Skates</h2>
+    <a *ngIf="esconderSkateNulo"
+        routerLink="/registrar-skate" class="btn btn-success">
+        Adicionar Skate
+    </a>
+</div>
+<div class="pricing-header mx-auto">
+    <div class="no-data text-center" *ngIf="preLoader">
+        <img src="assets/preloader.gif" class="preloader-icon" alt="Carregando Skates" />
+    </div>
+    <div class="no-data text-center" *ngIf="noData">
+        <img src="assets/no-skate.png" class="nodata-msg" alt="Sem Skates" />
+        <p class="nodata-msg">Nenhum skate foi adicionado ainda!</p>
+        <a routerLink="/registrar-skate" class="btn btn-success"> Adicionar Skate</a>
+    </div>
+    <div class="table-responsive" *ngIf="esconderSkateNulo">
+        <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Nome:</th>
+                    <th scope="col">Tamanho:</th>
+                    <th scope="col">Design:</th>
+                    <th scope="col">Lixa:</th>
+                    <th scope="col">Material:</th>
+                    <th scope="col">Modelo:</th>
+                    <th scope="col">Marca:</th>
+                    <th scope="col">Linha:</th>
+                    <th scope="col">Resina:</th>
+                    <th class="text-center" scope="col">Editar</th>
+                    <th class="text-center" scope="col">Deletar</th>
+                 }
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="
+            let skate of skates
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          ">
+                    <th scope="row">{{ skate.nome }}</th>
+                    <td>{{ skate.tamanho }}</td>
+                    <td>{{ skate.design }}</td>
+                    <td>{{ skate.lixa }}</td>
+                    <td>{{ skate.material }}</td>
+                    <td>{{ skate.modelo }}</td>
+                    <td>{{ skate.marca}}</td>
+                    <td>{{ skate.linha }}</td>
+                    <td>{{ skate.resina }}</td>
+                    <td class="text-center action-block">
+                        <span class="mr-2 btn btn-outline-primary btn-sm"
+                            routerLink="/editar-skate/{{ skate.$key }}">Editar</span>
+                    </td>
+                    <td class="text-center action-block">
+                        <span class="btn btn-outline-danger btn-sm" (click)="deleteSkate(skate)">Deletar</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
