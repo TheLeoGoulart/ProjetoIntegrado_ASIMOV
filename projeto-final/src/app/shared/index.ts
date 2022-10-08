@@ -3,4 +3,4 @@ export * from './guard/auth.guard';
 export * from './crud-usu/crud.service';
 export * from './crud-usu/usuario';
 export * from './crud-skt/skate';
-
+export * from './image/image.service';

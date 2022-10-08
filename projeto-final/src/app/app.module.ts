@@ -31,9 +31,16 @@ import { AddSkateComponent } from './add-skate/add-skate.component';
 import { EditSkateComponent } from './edit-skate/edit-skate.component';
 import { SkateListComponent } from './skate-list/skate-list.component';
 
+import { ImagesComponent } from './images/images.component';
+import { ImageComponent } from './images/image/image.component';
+import { ImageListComponent } from './images/image-list/image-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
+    ImagesComponent,
+    ImageComponent,
+    ImageListComponent,
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
