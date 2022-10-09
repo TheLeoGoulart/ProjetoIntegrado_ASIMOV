@@ -17,10 +17,6 @@ import { VerifyEmailComponent } from './verify-email';
 // route guard
 import { AuthGuard } from './shared';
 
-import { ImageListComponent } from './images/image-list/image-list.component';
-import { ImageComponent } from './images/image/image.component';
-import { ImagesComponent } from './images/images.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
@@ -34,8 +30,6 @@ const routes: Routes = [
   { path: 'registrar-skate', component: AddSkateComponent,  canActivate: [AuthGuard] },
   { path: 'ver-skate', component: SkateListComponent, canActivate: [AuthGuard]  },
   { path: 'editar-skate/:id', component: EditSkateComponent, canActivate: [AuthGuard]  },
-  { path: 'image', component: ImageComponent, canActivate: [AuthGuard], },
-  { path: 'list', component: ImageListComponent, canActivate: [AuthGuard]  },
 ];
 
 @NgModule({

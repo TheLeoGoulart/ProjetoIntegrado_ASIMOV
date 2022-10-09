@@ -1,7 +1,6 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AuthService } from '.././shared';
+import { getStorage, ref, uploadString } from "firebase/storage";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +11,5 @@ export class DashboardComponent implements OnInit {
 
   constructor(public authService: AuthService) { }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {}s
 }

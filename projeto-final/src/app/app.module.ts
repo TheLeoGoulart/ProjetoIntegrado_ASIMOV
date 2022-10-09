@@ -12,10 +12,12 @@ import { DashboardModule } from './dashboard';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
+import { getStorage } from 'firebase/storage';
+import { initializeApp } from "firebase/app";
 
 import { SignInComponent } from './sign-in';
 import { SignUpComponent } from './sign-up';
@@ -31,16 +33,9 @@ import { AddSkateComponent } from './add-skate/add-skate.component';
 import { EditSkateComponent } from './edit-skate/edit-skate.component';
 import { SkateListComponent } from './skate-list/skate-list.component';
 
-import { ImagesComponent } from './images/images.component';
-import { ImageComponent } from './images/image/image.component';
-import { ImageListComponent } from './images/image-list/image-list.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    ImagesComponent,
-    ImageComponent,
-    ImageListComponent,
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
@@ -62,6 +57,7 @@ import { ImageListComponent } from './images/image-list/image-list.component';
     BrowserAnimationsModule,
     //ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
