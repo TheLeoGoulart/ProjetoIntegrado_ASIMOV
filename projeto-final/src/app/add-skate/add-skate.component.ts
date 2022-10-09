@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-skate',
@@ -13,7 +12,6 @@ export class AddSkateComponent implements OnInit {
   constructor(
     public crudApi: CrudService,
     public fb: FormBuilder,
-    //public toastr: ToastrService
   ) {}
   ngOnInit() {
     this.crudApi.GetSkateList();
@@ -23,19 +21,23 @@ export class AddSkateComponent implements OnInit {
   skaterForm() {
     this.skateForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
-      tamanho: [''],
+      valor: [''],
+      tamanho: ['', [Validators.required, Validators.minLength(1)]], 
       design: [''],
-      lixa: [''],
-      material: [''],
-      modelo: [''],
-      marca: [''],
-      linha: [''],
-      resina: [''],
+      lixa: ['', [Validators.required, Validators.minLength(2)]],
+      material: ['', [Validators.required, Validators.minLength(2)]],
+      modelo: ['', [Validators.required, Validators.minLength(2)]],
+      marca: ['', [Validators.required, Validators.minLength(2)]],
+      linha: ['', [Validators.required, Validators.minLength(2)]],
+      resina: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 
   get nome() {
     return this.skateForm.get('nome');
+  }
+  get valor() {
+    return this.skateForm.get('valor');
   }
   get tamanho() {
     return this.skateForm.get('tamanho');
@@ -67,9 +69,7 @@ export class AddSkateComponent implements OnInit {
   }
   submitSkateData() {
     this.crudApi.AddSkate(this.skateForm.value);
-    //this.toastr.success(
-      //this.usuarioForm.controls['firstName'].value + ' successfully added!'
-    //);
+    alert(this.skateForm.controls['nome'].value + ' adicionado com sucesso!')
     this.ResetForm();
   }
 }

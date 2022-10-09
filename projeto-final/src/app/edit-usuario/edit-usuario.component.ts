@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-usuario',
@@ -19,7 +18,6 @@ export class EditUsuarioComponent implements OnInit {
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-    //private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -96,9 +94,7 @@ export class EditUsuarioComponent implements OnInit {
 
   atualizarForm() {
     this.crudApi.UpdateUsuario(this.editForm.value);
-    //this.toastr.success(
-      //this.editForm.controls['firstName'].value + ' updated successfully'
-    //);
+    alert(this.editForm.controls['firstName'].value + ' atualizado com sucesso');
     this.router.navigate(['ver-usuario']);
   }
 }

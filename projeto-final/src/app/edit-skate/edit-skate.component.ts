@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-skate',
@@ -19,7 +18,6 @@ export class EditSkateComponent implements OnInit {
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-    //private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -35,6 +33,9 @@ export class EditSkateComponent implements OnInit {
 
   get nome() {
     return this.editForm.get('nome');
+  }
+  get valor() {
+    return this.editForm.get('valor');
   }
   get tamanho() {
     return this.editForm.get('tamanho');
@@ -64,14 +65,15 @@ export class EditSkateComponent implements OnInit {
   atualizarSkateData() {
     this.editForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
-      tamanho: [''],
+      valor: [''],
+      tamanho: ['', [Validators.required, Validators.minLength(1)]], 
       design: [''],
-      lixa: [''],
-      material: [''],
-      modelo: [''],
-      marca: [''],
-      linha: [''],
-      resina: [''],
+      lixa: ['', [Validators.required, Validators.minLength(2)]],
+      material: ['', [Validators.required, Validators.minLength(2)]],
+      modelo: ['', [Validators.required, Validators.minLength(2)]],
+      marca: ['', [Validators.required, Validators.minLength(2)]],
+      linha: ['', [Validators.required, Validators.minLength(2)]],
+      resina: ['', [Validators.required, Validators.minLength(2)]]
     });
   }
 
@@ -81,9 +83,7 @@ export class EditSkateComponent implements OnInit {
 
   atualizarForm() {
     this.crudApi.UpdateSkate(this.editForm.value);
-    //this.toastr.success(
-      //this.editForm.controls['firstName'].value + ' updated successfully'
-    //);
+    alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
     this.router.navigate(['ver-skate']);
   }
 }

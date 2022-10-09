@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-usuario',
@@ -13,7 +12,6 @@ export class AddUsuarioComponent implements OnInit {
   constructor(
     public crudApi: CrudService,
     public fb: FormBuilder,
-    //public toastr: ToastrService
   ) {}
   ngOnInit() {
     this.crudApi.GetUsuarioList();
@@ -81,9 +79,7 @@ export class AddUsuarioComponent implements OnInit {
   }
   submitUsuarioData() {
     this.crudApi.AddUsuario(this.usuarioForm.value);
-    //this.toastr.success(
-      //this.usuarioForm.controls['firstName'].value + ' successfully added!'
-    //);
+    alert(this.usuarioForm.controls['nome'].value + ' ' + this.usuarioForm.controls['sobrenome'].value + ' successfully added!');
     this.ResetForm();
   }
 }

@@ -9,4 +9,5 @@ export interface Skate {
     marca:string;
     linha:string;
     resina:string;
+    valor: number;
  }

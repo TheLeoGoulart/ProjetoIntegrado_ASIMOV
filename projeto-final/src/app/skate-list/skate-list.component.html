@@ -19,6 +19,7 @@
             <thead>
                 <tr>
                     <th scope="col">Nome:</th>
+                    <th scope="col">Valor:</th>
                     <th scope="col">Tamanho:</th>
                     <th scope="col">Design:</th>
                     <th scope="col">Lixa:</th>
@@ -29,7 +30,6 @@
                     <th scope="col">Resina:</th>
                     <th class="text-center" scope="col">Editar</th>
                     <th class="text-center" scope="col">Deletar</th>
-                 }
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +39,7 @@
             let i = index
           ">
                     <th scope="row">{{ skate.nome }}</th>
+                    <td>R$ {{ skate.valor }}</td>
                     <td>{{ skate.tamanho }}</td>
                     <td>{{ skate.design }}</td>
                     <td>{{ skate.lixa }}</td>

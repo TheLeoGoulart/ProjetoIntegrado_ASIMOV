@@ -22,6 +22,7 @@ export class CrudService {
       marca: skate.marca,
       linha: skate.linha,
       resina: skate.resina,
+      valor: skate.valor
     });
   }
 
@@ -46,6 +47,7 @@ export class CrudService {
         marca: skate.marca,
         linha: skate.linha,
         resina: skate.resina,
+        valor: skate.valor
     });
   }
 

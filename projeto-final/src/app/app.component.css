@@ -1,3 +1,10 @@
 .navbar-dark{
 	background-color: aliceblue !important;
 }
+.navbar-brand{
+	padding: 0;
+	height: fit-content;
+}
+.brand-logo{
+	
+}
