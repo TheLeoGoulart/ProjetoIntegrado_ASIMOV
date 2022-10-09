@@ -11,6 +11,7 @@ export const environment = {
     messagingSenderId: "376319199328",
     appId: "1:376319199328:web:d7b9938159442f3f669b05",
     measurementId: "G-XQ01XCHFCG",
+    databaseUrl:"https://hawkskate-e49b4-default-rtdb.firebaseio.com/",
   },
 };
 

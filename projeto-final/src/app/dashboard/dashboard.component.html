@@ -13,7 +13,7 @@
               <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="assets/user.png"
                 alt="{{user.displayName}}">
               <div class="media-body">
-                <h1>Olá: <strong class="user">{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                <h1>Olá: <strong class="user">{{this.nome }} {{this.sobrenome}}</strong></h1>
                 <p>ID do Usuário: <strong class="user">{{user.uid}}</strong></p>
                 <p>Email: <strong class="user">{{user.email}}</strong></p>
                 <p *ngIf="user.emailVerified==true">Email Verificado: <strong class="statusT">Verificado</strong></p>

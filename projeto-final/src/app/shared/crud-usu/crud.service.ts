@@ -9,7 +9,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject,} from '@angula
 export class CrudService {
   usuariosRef: AngularFireList<any>;
   usuarioRef: AngularFireObject<any>;
-  constructor(private db: AngularFireDatabase) {}
+  constructor(public db: AngularFireDatabase) {}
   
   // Criar Usuario
   AddUsuario(usuario: Usuario) {
