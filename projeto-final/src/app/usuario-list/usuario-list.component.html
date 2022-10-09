@@ -20,12 +20,10 @@
                 <tr>
                     <th scope="col">Nome:</th>
                     <th scope="col">Email:</th>
-                    <th scope="col">CPF:</th>
                     <th scope="col">Telefone:</th>
                     <th scope="col">Endereco:</th>
                     <th scope="col">CEP:</th>
                     <th scope="col">Estado:</th>
-                    <th class="text-center" scope="col">Editar</th>
                     <th class="text-center" scope="col">Deletar</th>
                 </tr>
             </thead>
@@ -37,15 +35,10 @@
           ">
                     <th scope="row">{{ usuario.nome }} {{ usuario.sobrenome }}</th>
                     <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.cpf }}</td>
                     <td>{{ usuario.telefone }}</td>
                     <td>{{ usuario.endereco }}, {{ usuario.numero }}, {{ usuario.complemento }}</td>
                     <td>{{ usuario.cep }}</td>
                     <td>{{ usuario.estado}}</td>
-                    <td class="text-center action-block">
-                        <span class="mr-2 btn btn-outline-primary btn-sm"
-                            routerLink="/editar-usuario/{{ usuario.$key }}">Editar</span>
-                    </td>
                     <td class="text-center action-block">
                         <span class="btn btn-outline-danger btn-sm" (click)="deleteUsuario(usuario)">Deletar</span>
                     </td>

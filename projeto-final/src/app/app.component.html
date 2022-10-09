@@ -1,16 +1,16 @@
 <!-- Top navigation -->
 <nav *ngIf="authService.isLoggedIn" class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="ver-skate">
-    <img class="brand-logo" src="assets/logo.jpeg" alt="Logo">
+    <img class="brand-logo" src="assets/HAWKS-4.png" alt="Logo" height="50px">
   </a>
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" routerLink="/dashboard" style="color:orange;">
-        <span class="user-image" style="background-image: url('assets/user.png')"></span>
-        Olá Admin
-      </a>
-    </li>
-  </ul>
+  <a class="navbar-brand" routerLink="/ver-skate" routerLinkActive="active">
+    <span class="user-image" style="background-image: url('assets/skateboard.png')"></span>
+    Skates
+  </a>
+  <a class="navbar-brand" routerLink="/ver-usuario" routerLinkActive="active">
+    <span class="user-image" style="background-image: url('assets/group.png')"></span>
+    Usuários
+  </a>
 </nav>
 
 <!-- Sidebar navigation -->
@@ -19,29 +19,15 @@
     <nav *ngIf="authService.isLoggedIn" class="col-md-2 d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/registrar-usuario" routerLinkActive="active">
-              Adicionar Usuário
+          <li class="nav-item text-nowrap">
+            <a class="nav-link" routerLink="/dashboard" style="color:orange;">
+              <span class="user-image" style="background-image: url('assets/user.png')"></span>
+              Perfil
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/ver-usuario" routerLinkActive="active">
-              Lista de Usuário
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/registrar-skate" routerLinkActive="active">
-              Adicionar Skate
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/ver-skate" routerLinkActive="active">
-              Lista de Skates
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/image" routerLinkActive="active">
-              Imagens
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Sair
             </a>
           </li>
         </ul>
