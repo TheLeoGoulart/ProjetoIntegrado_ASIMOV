@@ -70,16 +70,16 @@ export class EditSkateComponent implements OnInit {
 
   atualizarSkateData() {
     this.editForm = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(2)]],
-      valor: [''],
-      tamanho: ['', [Validators.required, Validators.minLength(1)]],
       design: [''],
+      linha: ['', [Validators.required, Validators.minLength(2)]],
       lixa: ['', [Validators.required, Validators.minLength(2)]],
+      marca: ['', [Validators.required, Validators.minLength(2)]],
       material: ['', [Validators.required, Validators.minLength(2)]],
       modelo: ['', [Validators.required, Validators.minLength(2)]],
-      marca: ['', [Validators.required, Validators.minLength(2)]],
-      linha: ['', [Validators.required, Validators.minLength(2)]],
-      resina: ['', [Validators.required, Validators.minLength(2)]]
+      nome: ['', [Validators.required, Validators.minLength(2)]],
+      resina: ['', [Validators.required, Validators.minLength(2)]],
+      tamanho: ['', [Validators.required, Validators.minLength(1)]],
+      valor: [''],
     });
   }
 
@@ -96,17 +96,14 @@ export class EditSkateComponent implements OnInit {
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
-        const childData = childSnapshot.val();
-        if (childData.nome === this.editForm.controls['nome'].value) {
+        const childData = childSnapshot.val();    
+        if (childData.stringify === this.editForm.value.stringify) {
           this.key = childKey;
+          console.log("foi"); 
         }
       });
     });
-    
-    const storage = getStorage();
-    const desertRef = refS(storage, `Skate/${this.key}`);
-    deleteObject(desertRef).then(() => {})
-
+    console.log(this.key); 
     this.afStorage.upload("Skate/" + this.key, this.filePath);
 
     this.router.navigate(['ver-skate']);
