@@ -14,7 +14,6 @@
                 alt="{{user.displayName}}">
               <div class="media-body">
                 <h1>Olá: <strong class="user">{{this.nome }} {{this.sobrenome}}</strong></h1>
-                <p>ID do Usuário: <strong class="user">{{user.uid}}</strong></p>
                 <p>Email: <strong class="user">{{user.email}}</strong></p>
                 <p *ngIf="user.emailVerified==true">Email Verificado: <strong class="statusT">Verificado</strong></p>
                 <p *ngIf="user.emailVerified==false">Email Verificado: <strong class="statusF">Não Verificado</strong>
@@ -27,8 +26,3 @@
     </main>
   </div>
 </div>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="nav-link active boot">
-    <i class="fas fa-user"></i>Perfil do Usuário
-  </a>
-</nav>

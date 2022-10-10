@@ -13,12 +13,13 @@ import { SignInComponent } from './sign-in';
 import { SignUpComponent } from './sign-up';
 import { ForgotPasswordComponent } from './forgot-password';
 import { VerifyEmailComponent } from './verify-email';
+import { ClienteComponent } from './cliente/cliente.component';
 
 // route guard
 import { AuthGuard } from './shared';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/ver-skate', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'registrar-skate', component: AddSkateComponent,  canActivate: [AuthGuard] },
   { path: 'ver-skate', component: SkateListComponent, canActivate: [AuthGuard]  },
   { path: 'editar-skate/:id', component: EditSkateComponent, canActivate: [AuthGuard]  },
+  { path: 'cliente', component: ClienteComponent, canActivate: [AuthGuard]  },
 ];
 
 @NgModule({

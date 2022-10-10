@@ -4,12 +4,16 @@ import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { getDatabase, ref, onValue } from "firebase/database";
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   userData: any; // Save logged in user data
+  public admin;
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -37,7 +41,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['ver-skate']);
+            this.router.navigate(['dashboard']);
           }
         });
       })
@@ -80,13 +84,18 @@ export class AuthService {
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user !== null && user.emailVerified !== false ? true : false;
+    if (this.router.url === '/cliente') {
+      return false;
+    }
+    else {
+      const user = JSON.parse(localStorage.getItem('user')!);
+      return user !== null && user.emailVerified !== false ? true : false;
+    }
   }
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['ver-skate']);
+      this.router.navigate(['dashboard']);
     });
   }
   // Auth logic to run auth providers

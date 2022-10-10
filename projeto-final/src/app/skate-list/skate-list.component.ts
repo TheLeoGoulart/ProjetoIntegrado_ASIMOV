@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { Skate } from '../shared';
-//import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-skate-list',
@@ -17,7 +16,6 @@ export class SkateListComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService,
-    //public toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -48,7 +46,6 @@ export class SkateListComponent implements OnInit {
   deleteSkate(skate) {
     if (window.confirm('Você tem certeza que deseja apagar este Skate ?')) {
       this.crudApi.DeleteSkate(skate.$key)
-      //this.toastr.success(usuario.nome + usuario.sobrenome + 'Deletado com sucesso!');
     }
   }
 }

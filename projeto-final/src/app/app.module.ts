@@ -32,6 +32,7 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { AddSkateComponent } from './add-skate/add-skate.component';
 import { EditSkateComponent } from './edit-skate/edit-skate.component';
 import { SkateListComponent } from './skate-list/skate-list.component';
+import { ClienteComponent } from './cliente/cliente.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SkateListComponent } from './skate-list/skate-list.component';
     UsuarioListComponent,
     AddSkateComponent,
     EditSkateComponent,
-    SkateListComponent
+    SkateListComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

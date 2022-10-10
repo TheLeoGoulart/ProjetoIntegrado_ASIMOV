@@ -7,7 +7,7 @@
 }
 
 .user {
-	color:teal;
+	color: var(--laranja);
 }
 
 .boot {
