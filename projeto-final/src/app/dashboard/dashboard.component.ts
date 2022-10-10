@@ -12,25 +12,33 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   public nome;
   public sobrenome;
-  public admin;
 
   constructor(public authService: AuthService, public router: Router) {
   }
 
   ngOnInit(): void {
+    this.delay(150);
     const db = getDatabase();
     const dbRef = ref(db, 'usuarios-list/');
-
     onValue(dbRef, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const childData = childSnapshot.val();
-        if (childData.email == this.authService.userData.email)
-        {
+        if (childData.email == this.authService.userData.email) {
           this.nome = childData.nome;
           this.sobrenome = childData.sobrenome;
+          console.log(this.nome + this.sobrenome)
         }
       });
+    });
+    console.log(this.nome + this.sobrenome)
+  }
+
+  delay(ms: number): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(true);
+      }, ms);
     });
   }
 }

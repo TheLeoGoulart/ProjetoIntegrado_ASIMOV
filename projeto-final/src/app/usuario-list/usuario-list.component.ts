@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService, Usuario } from '../shared';
-//import { ToastrService } from 'ngx-toastr';
+import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-usuario-list',
@@ -16,10 +16,12 @@ export class UsuarioListComponent implements OnInit {
 
   constructor(
     public crudApi: CrudService,
-    //public toastr: ToastrService
   ) { }
 
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
+
     this.dataState();
     let s = this.crudApi.GetUsuarioList();
     s.snapshotChanges().subscribe(data => {
@@ -47,7 +49,6 @@ export class UsuarioListComponent implements OnInit {
   deleteUsuario(usuario) {
     if (window.confirm('Você tem certeza que deseja apagar este usuário ?')) {
       this.crudApi.DeleteUsuario(usuario.$key)
-      //this.toastr.success(usuario.nome + usuario.sobrenome + 'Deletado com sucesso!');
     }
   }
 }

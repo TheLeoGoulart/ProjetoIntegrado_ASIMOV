@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-add-usuario',
@@ -14,6 +15,8 @@ export class AddUsuarioComponent implements OnInit {
     public fb: FormBuilder,
   ) {}
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
     this.crudApi.GetUsuarioList();
     this.userForm();
   }

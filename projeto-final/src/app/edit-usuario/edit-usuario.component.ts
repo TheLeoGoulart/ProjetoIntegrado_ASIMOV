@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../shared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-edit-usuario',
@@ -21,6 +22,9 @@ export class EditUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
+
     this.atualizarUsuarioData();
     const id = this.actRoute.snapshot.paramMap.get('id');
     this.crudApi

@@ -21,6 +21,9 @@ export class AddSkateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
+    
     this.crudApi.GetSkateList();
     this.skaterForm();
   }

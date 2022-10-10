@@ -3,9 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { getDatabase, ref, onValue } from "firebase/database";
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { getStorage, ref as refS, deleteObject } from "firebase/storage";
+import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-edit-skate',
@@ -27,8 +26,12 @@ export class EditSkateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
+    
     this.atualizarSkateData();
     const id = this.actRoute.snapshot.paramMap.get('id');
+    this.key = id;
     this.crudApi
       .GetSkate(id)
       .valueChanges()
@@ -90,22 +93,7 @@ export class EditSkateComponent implements OnInit {
   atualizarForm() {
     this.crudApi.UpdateSkate(this.editForm.value);
     alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
-
-    const db = getDatabase();
-    const dbRef = ref(db, 'skate-list/');
-    onValue(dbRef, (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        const childKey = childSnapshot.key;
-        const childData = childSnapshot.val();    
-        if (childData.stringify === this.editForm.value.stringify) {
-          this.key = childKey;
-          console.log("foi"); 
-        }
-      });
-    });
-    console.log(this.key); 
     this.afStorage.upload("Skate/" + this.key, this.filePath);
-
     this.router.navigate(['ver-skate']);
   }
 

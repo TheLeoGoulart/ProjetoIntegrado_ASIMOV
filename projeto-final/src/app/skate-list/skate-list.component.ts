@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { Skate } from '../shared';
 import { getStorage, ref as refS, deleteObject } from "firebase/storage";
+import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-skate-list',
@@ -20,6 +21,9 @@ export class SkateListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const db = getDatabase();
+    const dbRef = ref(db, 'usuarios-list/');
+    
     this.dataState();
     let s = this.crudApi.GetSkateList();
     s.snapshotChanges().subscribe(data => {
