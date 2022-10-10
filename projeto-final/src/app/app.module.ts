@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,11 +15,8 @@ import { AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
-import { getStorage } from 'firebase/storage';
-import { initializeApp } from "firebase/app";
 
 import { SignInComponent } from './sign-in';
-import { SignUpComponent } from './sign-up';
 import { ForgotPasswordComponent } from './forgot-password';
 import { VerifyEmailComponent } from './verify-email';
 
@@ -38,7 +34,6 @@ import { ClienteComponent } from './cliente/cliente.component';
   declarations: [
     AppComponent,
     SignInComponent,
-    SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
     AddUsuarioComponent,
@@ -57,7 +52,6 @@ import { ClienteComponent } from './cliente/cliente.component';
     DashboardModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    //ToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
     AngularFireAuthModule,

@@ -31,9 +31,6 @@ export class DashboardComponent implements OnInit {
           this.sobrenome = childData.sobrenome;
         }
       });
-      //console.log(this.nome + this.sobrenome)
     });
-
-    
   }
 }

@@ -10,7 +10,6 @@ import { AddSkateComponent } from './add-skate';
 import { SkateListComponent } from './skate-list';
 import { EditUsuarioComponent } from './edit-usuario';
 import { SignInComponent } from './sign-in';
-import { SignUpComponent } from './sign-up';
 import { ForgotPasswordComponent } from './forgot-password';
 import { VerifyEmailComponent } from './verify-email';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -21,7 +20,6 @@ import { AuthGuard } from './shared';
 const routes: Routes = [
   { path: '', redirectTo: '/ver-skate', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'sign-up', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
@@ -31,7 +29,7 @@ const routes: Routes = [
   { path: 'registrar-skate', component: AddSkateComponent,  canActivate: [AuthGuard] },
   { path: 'ver-skate', component: SkateListComponent, canActivate: [AuthGuard]  },
   { path: 'editar-skate/:id', component: EditSkateComponent, canActivate: [AuthGuard]  },
-  { path: 'cliente', component: ClienteComponent, canActivate: [AuthGuard]  },
+  { path: 'cliente', component: ClienteComponent,  },
 ];
 
 @NgModule({

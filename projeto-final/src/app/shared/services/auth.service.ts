@@ -41,7 +41,24 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
-            this.router.navigate(['dashboard']);
+            const db = getDatabase();
+            const dbRef = ref(db, 'usuarios-list/');
+
+            onValue(dbRef, (snapshot) => { 
+              snapshot.forEach((childSnapshot) => {
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                if (childData.email == email) {
+                  this.admin = childData.admin;
+                }
+              });
+            });
+            if (this.admin === true) {
+              this.router.navigate(['ver-skate']);
+            }
+            else {
+              this.router.navigate(['cliente']);
+            }
           }
         });
       })
@@ -84,7 +101,7 @@ export class AuthService {
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    if (this.router.url === '/cliente') {
+    if (this.admin === false) {
       return false;
     }
     else {
@@ -95,6 +112,7 @@ export class AuthService {
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
+      
       this.router.navigate(['dashboard']);
     });
   }

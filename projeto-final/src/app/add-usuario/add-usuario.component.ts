@@ -28,7 +28,6 @@ export class AddUsuarioComponent implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ],
       ],
-      senha: [''],
       cpf: [''],
       telefone: [''],
       admin: false,
@@ -48,9 +47,6 @@ export class AddUsuarioComponent implements OnInit {
   }
   get email() {
     return this.usuarioForm.get('email');
-  }
-  get senha() {
-    return this.usuarioForm.get('senha');
   }
   get cpf() {
     return this.usuarioForm.get('cpf');

@@ -16,21 +16,8 @@
           <input type="button" class="btn btnPrimary" value="Entrar"
             (click)="authService.SignIn(userEmail.value, userPassword.value)">
         </div>
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Ou</span></span>
-        </div>
-        <!-- Calling GoogleAuth Api from AuthService -->
-        <div class="formGroup">
-          <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-            <i class="fab fa-google-plus-g"></i>
-            Entrar com o Google
-          </button>
-        </div>
         <div class="forgotPassword">
           <span routerLink="/forgot-password" style="color: orange;">Esqueceu sua senha?</span>
-        </div>
-        <div class="redirectToLogin">
-          <span>Ainda não possui conta?<span class="redirect" routerLink="/sign-up"> Cadastrar</span></span>
         </div>
       </div>
     </div>

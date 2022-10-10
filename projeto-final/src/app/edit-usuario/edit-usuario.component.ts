@@ -40,9 +40,6 @@ export class EditUsuarioComponent implements OnInit {
   get email() {
     return this.editForm.get('email');
   }
-  get senha() {
-    return this.editForm.get('senha');
-  }
   get cpf() {
     return this.editForm.get('cpf');
   }
@@ -76,7 +73,6 @@ export class EditUsuarioComponent implements OnInit {
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ],
       ],
-      senha: [''],
       cpf: [''],
       telefone: [''],
       admin: false,
