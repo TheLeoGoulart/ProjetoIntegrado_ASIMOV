@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { Skate } from '../shared';
+import { getStorage, ref as refS, deleteObject } from "firebase/storage";
 
 @Component({
   selector: 'app-skate-list',
@@ -45,7 +46,11 @@ export class SkateListComponent implements OnInit {
   }
   deleteSkate(skate) {
     if (window.confirm('Você tem certeza que deseja apagar este Skate ?')) {
-      this.crudApi.DeleteSkate(skate.$key)
+      this.crudApi.DeleteSkate(skate.$key);
+      
+      const storage = getStorage();
+      const desertRef = refS(storage, `Skate/${skate.$key}`);
+      deleteObject(desertRef).then(() => {})
     }
   }
 }

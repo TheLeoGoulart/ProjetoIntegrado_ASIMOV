@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label>Design</label>
-                    <input type="text" formControlName="design" class="form-control" />
+                    <input type="file" (change)="upload($event)" accept=".png,.jpg" />
                 </div>
                 <div class="col-md-12 mb-3">
                     <label>Lixa</label>

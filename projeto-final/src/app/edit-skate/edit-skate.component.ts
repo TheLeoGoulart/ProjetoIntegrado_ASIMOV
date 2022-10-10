@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { getDatabase, ref, onValue } from "firebase/database";
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { getStorage, ref as refS, deleteObject } from "firebase/storage";
 
 @Component({
   selector: 'app-edit-skate',
@@ -11,6 +14,8 @@ import { Location } from '@angular/common';
 })
 export class EditSkateComponent implements OnInit {
   editForm: FormGroup;
+  filePath: string;
+  key;
 
   constructor(
     private crudApi: CrudService,
@@ -18,7 +23,8 @@ export class EditSkateComponent implements OnInit {
     private location: Location,
     private actRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+    private afStorage: AngularFireStorage,
+  ) { }
 
   ngOnInit() {
     this.atualizarSkateData();
@@ -66,7 +72,7 @@ export class EditSkateComponent implements OnInit {
     this.editForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
       valor: [''],
-      tamanho: ['', [Validators.required, Validators.minLength(1)]], 
+      tamanho: ['', [Validators.required, Validators.minLength(1)]],
       design: [''],
       lixa: ['', [Validators.required, Validators.minLength(2)]],
       material: ['', [Validators.required, Validators.minLength(2)]],
@@ -84,6 +90,29 @@ export class EditSkateComponent implements OnInit {
   atualizarForm() {
     this.crudApi.UpdateSkate(this.editForm.value);
     alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
+
+    const db = getDatabase();
+    const dbRef = ref(db, 'skate-list/');
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const childKey = childSnapshot.key;
+        const childData = childSnapshot.val();
+        if (childData.nome === this.editForm.controls['nome'].value) {
+          this.key = childKey;
+        }
+      });
+    });
+    
+    const storage = getStorage();
+    const desertRef = refS(storage, `Skate/${this.key}`);
+    deleteObject(desertRef).then(() => {})
+
+    this.afStorage.upload("Skate/" + this.key, this.filePath);
+
     this.router.navigate(['ver-skate']);
+  }
+
+  upload(event) {
+    this.filePath = event.target.files[0]
   }
 }

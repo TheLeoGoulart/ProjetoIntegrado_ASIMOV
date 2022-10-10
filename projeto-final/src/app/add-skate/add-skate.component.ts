@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { getDatabase, ref, onValue } from "firebase/database";
 
 @Component({
   selector: 'app-add-skate',
@@ -9,10 +11,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddSkateComponent implements OnInit {
   public skateForm: FormGroup;
+  public filePath: String;
+  public key: string;
+
   constructor(
     public crudApi: CrudService,
     public fb: FormBuilder,
-  ) {}
+    private afStorage: AngularFireStorage,
+  ) { }
+
   ngOnInit() {
     this.crudApi.GetSkateList();
     this.skaterForm();
@@ -22,7 +29,7 @@ export class AddSkateComponent implements OnInit {
     this.skateForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2)]],
       valor: [''],
-      tamanho: ['', [Validators.required, Validators.minLength(1)]], 
+      tamanho: ['', [Validators.required, Validators.minLength(1)]],
       design: [''],
       lixa: ['', [Validators.required, Validators.minLength(2)]],
       material: ['', [Validators.required, Validators.minLength(2)]],
@@ -41,9 +48,6 @@ export class AddSkateComponent implements OnInit {
   }
   get tamanho() {
     return this.skateForm.get('tamanho');
-  }
-  get design() {
-    return this.skateForm.get('design');
   }
   get lixa() {
     return this.skateForm.get('lixa');
@@ -67,10 +71,28 @@ export class AddSkateComponent implements OnInit {
   ResetForm() {
     this.skateForm.reset();
   }
+
   submitSkateData() {
     this.crudApi.AddSkate(this.skateForm.value);
     alert(this.skateForm.controls['nome'].value + ' adicionado com sucesso!')
+
+    const db = getDatabase();
+    const dbRef = ref(db, 'skate-list/');
+    onValue(dbRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        const childKey = childSnapshot.key;
+        const childData = childSnapshot.val();
+        this.key = childKey;
+      });
+    });
+
+    this.afStorage.upload("Skate/" + this.key, this.filePath);
     this.ResetForm();
   }
+
+  upload(event) {
+    this.filePath = event.target.files[0]
+  }
+
 }
 
