@@ -1,3 +1,20 @@
 .all{
-    background-color: var(--laranja) !important;
+    display: flex;
+    width: calc(100vw - 48px);
+    height: calc(100vh - 48px);
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    display: block;
+    width: 45vw;
+    height: 50vh;
+    background-color: var(--laranja);
+    border-radius: 25px;
+    text-align: center;
+}
+
+.text img {
+    width: 140px;
 }
