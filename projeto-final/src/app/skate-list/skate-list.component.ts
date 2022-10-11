@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../shared/crud-skt/crud.service';
 import { Skate } from '../shared';
-import { getStorage, ref as refS, deleteObject } from "firebase/storage";
+import { getStorage, ref as refS, deleteObject, getDownloadURL } from "firebase/storage";
 import { getDatabase, ref } from "firebase/database";
 
 @Component({
@@ -12,6 +12,7 @@ import { getDatabase, ref } from "firebase/database";
 export class SkateListComponent implements OnInit {
   p: number = 1;
   skates: Skate[];
+  skateImg: String[];
   esconderSkateNulo: boolean = false;
   noData: boolean = false;
   preLoader: boolean = true;
@@ -22,15 +23,22 @@ export class SkateListComponent implements OnInit {
 
   ngOnInit() {
     const db = getDatabase();
+    const storage = getStorage();
     const dbRef = ref(db, 'usuarios-list/');
     
     this.dataState();
     let s = this.crudApi.GetSkateList();
     s.snapshotChanges().subscribe(data => {
       this.skates = [];
+      this.skateImg = [];
       data.forEach(item => {
         let a = item.payload.toJSON();
         a['$key'] = item.key;
+
+        getDownloadURL(refS(storage, 'Skate/'+item.key))
+        .then((url) => {
+          this.skateImg.push(url);
+        })
         this.skates.push(a as Skate);
       })
     })

@@ -91,9 +91,14 @@ export class EditSkateComponent implements OnInit {
   }
 
   atualizarForm() {
+    //Update Realtime Database skate-list
+    this.editForm.value.design = "Skate/" + this.key;
     this.crudApi.UpdateSkate(this.editForm.value);
     alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
+    
+    //Update Storage Skate/
     this.afStorage.upload("Skate/" + this.key, this.filePath);
+    
     this.router.navigate(['ver-skate']);
   }
 

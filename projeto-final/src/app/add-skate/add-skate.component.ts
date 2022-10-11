@@ -12,7 +12,8 @@ import { getDatabase, ref, onValue } from "firebase/database";
 export class AddSkateComponent implements OnInit {
   public skateForm: FormGroup;
   public filePath: String;
-  public key: string;
+  public imageUrl: String;
+  public key: String;
 
   constructor(
     public crudApi: CrudService,
@@ -76,6 +77,7 @@ export class AddSkateComponent implements OnInit {
   }
 
   submitSkateData() {
+    //Cadastro Realtime Database skate-list
     this.crudApi.AddSkate(this.skateForm.value);
     alert(this.skateForm.controls['nome'].value + ' adicionado com sucesso!')
 
@@ -88,6 +90,11 @@ export class AddSkateComponent implements OnInit {
         this.key = childKey;
       });
     });
+
+    //Update Realtime Database skate-list.design
+    this.skateForm.value.design = "Skate/" + this.key;
+    this.crudApi.UpdateSkate(this.skateForm.value);
+
 
     this.afStorage.upload("Skate/" + this.key, this.filePath);
     this.ResetForm();
