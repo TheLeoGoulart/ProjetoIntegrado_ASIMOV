@@ -91,12 +91,9 @@ export class AddSkateComponent implements OnInit {
       });
     });
 
-    //Update Realtime Database skate-list.design
-    this.skateForm.value.design = "Skate/" + this.key;
-    this.crudApi.UpdateSkate(this.skateForm.value);
-
-
+    //Update Storage Skate/
     this.afStorage.upload("Skate/" + this.key, this.filePath);
+
     this.ResetForm();
   }
 

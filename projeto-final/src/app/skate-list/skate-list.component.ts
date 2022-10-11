@@ -37,7 +37,7 @@ export class SkateListComponent implements OnInit {
 
         getDownloadURL(refS(storage, 'Skate/'+item.key))
         .then((url) => {
-          this.skateImg.push(url);
+          this.skateImg[item.key] = url;
         })
         this.skates.push(a as Skate);
       })

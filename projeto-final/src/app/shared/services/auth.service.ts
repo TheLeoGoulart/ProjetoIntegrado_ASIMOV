@@ -53,6 +53,7 @@ export class AuthService {
                 }
               });
             });
+            
             if (this.admin === true) {
               this.router.navigate(['ver-skate']);
             }

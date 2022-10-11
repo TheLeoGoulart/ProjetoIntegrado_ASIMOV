@@ -365,6 +365,8 @@ input.ng-invalid.ng-touched {
 
 .sidebar-sticky {
   padding-top: 1.2rem !important;
+  max-width: 200px;
+  min-width: 135px;
 }
 
 /* Form */
@@ -436,6 +438,10 @@ label {
 
 body .table thead th {
   background: #f3f5ff;
+}
+
+.table {
+  width: fit-content;
 }
 
 .pricing-header {
