@@ -102,11 +102,12 @@ export class AuthService {
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
-    if (this.admin === true) {
-      const user = JSON.parse(localStorage.getItem('user')!);
-      return user !== null && user.emailVerified !== false ? true : false;
+    if (this.admin === false) {
+      return false;
+    } else {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
     }
-    return false;
   }
   // Sign in with Google
   GoogleAuth() {
