@@ -4,7 +4,6 @@ import { CrudService } from '../shared/crud-skt/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { getDatabase, ref } from "firebase/database";
 
 @Component({
   selector: 'app-edit-skate',
@@ -26,8 +25,6 @@ export class EditSkateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const db = getDatabase();
-    const dbRef = ref(db, 'usuarios-list/');
     
     this.atualizarSkateData();
     const id = this.actRoute.snapshot.paramMap.get('id');
@@ -93,10 +90,9 @@ export class EditSkateComponent implements OnInit {
   atualizarForm() {
     //Update Realtime Database skate-list
     this.crudApi.UpdateSkate(this.editForm.value);
-    alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
-    
     //Update Storage Skate/
     this.afStorage.upload("Skate/" + this.key, this.filePath);
+    alert(this.editForm.controls['nome'].value + ' editado com sucesso!');
     
     window.location.href = "ver-skate";
   }
